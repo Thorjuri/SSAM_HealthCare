@@ -1,0 +1,38 @@
+{
+  "name": "ssam_healthcare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1256.0",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer-s3": "^2.10.0",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.8.0",
+    "sequelize": "^6.25.6",
+    "socket.io": "^4.5.3",
+    "swagger-autogen": "^2.22.0",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/node": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "sequelize-cli": "^6.5.2"
+  }
+}

@@ -25,7 +25,7 @@ app.use(
 
 app.options("*", cors());
 
-app.use("/", Router);
+app.use("/api", Router);
 //app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(errorHandlerMiddleware);
 

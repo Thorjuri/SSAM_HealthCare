@@ -25,10 +25,20 @@ app.use(
 
 app.options("*", cors());
 
-app.use("/api", Router);
+app.use('/api', Router);
+
+app.get('/', (req, res)=>{
+    res.send("서버 정상 작동 중😏😏");
+});
+
 //app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(errorHandlerMiddleware);
 
-app.listen(Port, () => {
-    console.log(`${Port}번 서버 실행`);
-});
+
+if(process.env.NODE_ENV !== 'test'){
+    app.listen(Port, () => {
+        console.log(`${Port}번 서버 실행😏😏`);
+    });
+}
+
+module.exports = app;

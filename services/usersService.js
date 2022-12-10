@@ -6,7 +6,7 @@ class UsersService {
 
     signup = async(loginId, password, confirmPass, nickname, email, phone, gender)=> {
         const err = new Error(`reservationsService Error`);
-
+        return "done"
     };
 };
 

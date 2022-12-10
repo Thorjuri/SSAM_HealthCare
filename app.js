@@ -28,7 +28,7 @@ app.options("*", cors());
 app.use('/api', Router);
 
 app.get('/', (req, res)=>{
-    res.send("서버 정상 작동 중😏😏");
+    res.send("SSAM 서버 정상 작동 중😏😏");
 });
 
 //app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));

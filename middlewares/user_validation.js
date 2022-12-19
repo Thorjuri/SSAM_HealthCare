@@ -17,9 +17,7 @@ const user_validation = {
     
     try { // 검사시작 
         await schema.validateAsync(body); 
-    } catch (error) { // 유효성 검사 에러 
-        // return res.status(400).json({ code: 400, message: error.message });
-        const err = error
+    } catch (err) { // 유효성 검사 에러 
         err.code = -1
         throw err
         } 

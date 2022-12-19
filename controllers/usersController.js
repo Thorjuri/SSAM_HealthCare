@@ -4,8 +4,8 @@ class UsersController {
     usersService = new UsersService
 
     signup = async(req, res)=> {
-        const { loginId, password, confirmPass, nickname, email, phone, gender } = req.body;
-        const data = await this.usersService.signup(loginId, password, confirmPass, nickname, email, phone, gender);
+        const { loginId, password, nickname, email, phone, gender } = req.body;
+        const data = await this.usersService.signup(loginId, password, nickname, email, phone, gender);
         res.status(201).send(data);
     };
 

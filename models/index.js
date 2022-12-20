@@ -17,7 +17,6 @@ if(process.env.NODE_ENV !== 'test'){ // test 상황 조건문 여기서부터-
       sequelize = new Sequelize(config.database, config.username, config.password, config);
     }
 
-
     fs.readdirSync(__dirname)
       .filter((file) => {
         return file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js";
@@ -36,7 +35,6 @@ if(process.env.NODE_ENV !== 'test'){ // test 상황 조건문 여기서부터-
     db.sequelize = sequelize;
     db.Sequelize = Sequelize;
 
-    // force true 시 디비 날려버리고 새로만듭니다! 첫실행 후 꼭 false로 바꿔주기!
     sequelize.sync({ force: false });
 
 } //test 상황 조건문 여기까지 감싸주기

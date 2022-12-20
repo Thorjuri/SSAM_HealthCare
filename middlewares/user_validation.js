@@ -11,17 +11,18 @@ const user_validation = {
                         .pattern(new RegExp('^[a-zA-Z0-9]{5,20}$')),
             confirmPass: Joi.ref('password'), 
             email: Joi.string().email().required(), 
+            phone: Joi.string(),
             gender: Joi.string().required(),
             age: Joi.number().required()
         }); 
     
     try { // 검사시작 
-        await schema.validateAsync(body); 
+        await schema.validateAsync(body);
+        next() 
     } catch (err) { // 유효성 검사 에러 
-        err.code = -1
-        throw err
+        err.code = 1
+        next(err); 
         } 
-    next(); 
     } 
 }; 
     module.exports = user_validation;

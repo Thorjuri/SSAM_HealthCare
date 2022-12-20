@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false,
     },
+    accKey: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    refreshToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     email: {
       type: DataTypes.STRING,
       unique: true,

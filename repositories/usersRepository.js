@@ -18,10 +18,18 @@ class UsersRepository {
                 data = await Users.findOne({ where : { nickname: source }}); 
             };
         return data;
-    }
+    };
 
     login = async(loginId, password)=> {
         const data = await Users.findOne({ where : { loginId, password }});
+        return data;
+    };
+
+    getUser = async(nickname)=> {
+        const data = await Users.findOne({
+            attributes: {exclude: ['password']},
+            where : { nickname }
+        });
         return data;
     };
 };

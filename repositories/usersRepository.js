@@ -2,9 +2,24 @@ const {Contents, Evaluations, Feedbacks, Users} = require('../models')
 
 class UsersRepository {
 
-    signup = async(loginId, password, nickname, email, phone, gender)=> {
-        const data = await Users.create({loginId, password, nickname, email, phone, gender});
-        return {data, message: "회원가입이 완료되었습니다."};
+    signup = async(loginId, password, nickname, email, phone, gender, age)=> {
+        const data = await Users.create({ loginId, password, nickname, email, phone, gender, age });
+        return {
+            loginId: data.loginId,
+            nickname: data.nickname,
+            message: "회원가입이 완료되었습니다." };
+    };
+
+    checkId = async(loginId)=> {
+        const data = await Users.findOne({
+            attributes: ['loginId', 'password', 'nickname'],
+            where: { loginId }
+        });
+        return data;
+    };
+
+    updateRefreshToken = async(refreshToken, user)=> {
+        await Users.update({ refreshToken }, { where : { loginId: user.loginId }});
     };
 
     checkDup = async(checkThing)=> {
@@ -20,10 +35,6 @@ class UsersRepository {
         return data;
     }
 
-    login = async(loginId, password)=> {
-        const data = await Users.findOne({ where : { loginId, password }});
-        return data;
-    };
 };
 
 module.exports = UsersRepository;

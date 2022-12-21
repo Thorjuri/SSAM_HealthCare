@@ -4,8 +4,14 @@ class UsersController {
     usersService = new UsersService
 
     signup = async(req, res)=> {
-        const { loginId, password, nickname, email, phone, gender } = req.body;
-        const data = await this.usersService.signup(loginId, password, nickname, email, phone, gender);
+        const { loginId, password, nickname, email, phone, gender, age } = req.body;
+        const data = await this.usersService.signup(loginId, password, nickname, email, phone, gender, age);
+        res.status(201).send(data);
+    };
+
+    login = async(req, res)=> {
+        const { loginId, password } = req.body;
+        const data = await this.usersService.login(loginId, password);
         res.status(201).send(data);
     };
 
@@ -15,11 +21,6 @@ class UsersController {
         res.status(201).send(data);
     };
 
-    login = async(req, res)=> {
-        const { loginId, password } = req.body;
-        const data = await this.usersService.login(loginId, password);
-        res.status(201).send(data);
-    };
 
 };
 

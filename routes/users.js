@@ -7,7 +7,7 @@ const {user_singup} = require('../middlewares/user_validation');
 
 
 
-router.post('/signup', wrapAsyncController(user_singup), wrapAsyncController(usersController.signup));
+router.post('/signup', user_singup, wrapAsyncController(usersController.signup));
 router.post('/checkDup', wrapAsyncController(usersController.checkDup));
 router.post('/login', wrapAsyncController(usersController.login));
 

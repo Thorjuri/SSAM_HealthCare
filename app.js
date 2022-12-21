@@ -26,14 +26,13 @@ app.use(
 app.options("*", cors());
 
 app.use('/api', Router);
+app.use(errorHandlerMiddleware);
 
 app.get('/', (req, res)=>{
-    res.send("SSAM 서버 정상 작동 중😏😏");
+    res.send("SSAM 서버 정상 작동 중😏😏😏😏😏");
 });
 
 //app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use(errorHandlerMiddleware);
-
 
 if(process.env.NODE_ENV !== 'test'){
     app.listen(Port, () => {

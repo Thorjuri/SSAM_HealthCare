@@ -42,7 +42,7 @@ class UsersService {
             expiresIn: "1d"
         });
         await this.usersRepository.updateRefreshToken(refreshToken, user);
-        return { loginId: user.loginId, accessToken, refreshToken };
+        return { loginId: user.loginId, accessToken: `Bearer ${accessToken}`, refreshToken };
     };
 
     checkDup = async(checkThing)=> {

@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     const [authType, authToken, refreshToken] = (authorization || '').split(' ');
 
     if (!authToken || authType !== 'Bearer' || authToken === undefined) {
-        err.code = 6;
+        err.code = 6; 
         next(err)
         // res.status(401).send({
         //     errorMessage: '로그인이 필요합니다. 먼저 로그인 해주세요.',

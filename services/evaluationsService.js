@@ -5,29 +5,31 @@ class EvaluationsService {
     evaluationsRepository = new EvaluationsRepository();
     usersRepository = new UsersRepository();
 
-    createExer = async(nickname, disease, senior, obesity, activity, 
-                        height, weight, waist, hip, glucose, SBP, DBP)=> {
+    createExer = async(nickname, disease, activity, height, 
+        weight, waist, hip, glucose, SBP, DBP)=> {
         const err = new Error(`evaluationService Error`);
         const userInfo = await this.usersRepository.getUser(nickname);
         const { userId } = userInfo
         const WHR = (waist/hip).toFixed(2)
         const BMI = weight/((height/100)**2)
         let featureCode;
+        let obesity;
+        let senior;
 
             if(BMI >= 25.0) {
-                obesity = 'True'
+                obesity = true
                 featureCode = 'ob'
             }else {
-                obesity = 'False'
+                obesity = false
                 featureCode = ''
             };
 
 
             if(userInfo.age >= 65) {
-                senior = 'True'
+                senior = true
                 featureCode = 'sr'
             }else {
-                senior = 'False'
+                senior = false
             };
 
         let BMR;
@@ -53,7 +55,7 @@ class EvaluationsService {
                     break
                 case '당뇨병+고혈압':
                     diseaseCode = 'dbhp'
-                    break
+                    breaks
                 case '정상':
                     diseaseCode = ''
                     break
@@ -61,7 +63,7 @@ class EvaluationsService {
         const statusCode = featureCode + diseaseCode;
         const data = await this.evaluationsRepository.createExer(
             userId, nickname, statusCode, disease, senior, obesity,
-            activity, height, weight, WHR, BMI, BMR, glucose, SBP, DBP );
+            activity, height, weight, WHR, BMI, BMR, glucose, SBP, DBP);
         return data;
     };
 

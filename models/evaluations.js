@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     activity:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     height: {

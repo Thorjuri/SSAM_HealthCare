@@ -7,10 +7,12 @@ module.exports = async (req, res, next) => {
     const { authorization } = req.headers;
     const [authType, authToken, refreshToken] = (authorization || '').split(" ");
 
+
     if (!authToken || authType !== "Bearer" || authToken === undefined) {
         err.code = 6;
         next(err);
     };
+
 
     try {
         const accessToken = jwt.verify(authToken, process.env.SECRET_KEY);

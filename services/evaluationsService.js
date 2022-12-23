@@ -6,7 +6,7 @@ class EvaluationsService {
     usersRepository = new UsersRepository();
 
     createExer = async(nickname, disease, activity, height, 
-        weight, waist, hip, glucose, SBP, DBP)=> {
+                        weight, waist, hip, glucose, SBP, DBP)=> {
         const err = new Error(`evaluationService Error`);
         const userInfo = await this.usersRepository.getUser(nickname);
         const { userId } = userInfo
@@ -62,8 +62,8 @@ class EvaluationsService {
             };
         const statusCode = featureCode + diseaseCode;
         const data = await this.evaluationsRepository.createExer(
-            userId, nickname, statusCode, disease, senior, obesity,
-            activity, height, weight, WHR, BMI, BMR, glucose, SBP, DBP);
+                userId, nickname, statusCode, disease, senior, obesity,
+                activity, height, weight, WHR, BMI, BMR, glucose, SBP, DBP);
         return data;
     };
 

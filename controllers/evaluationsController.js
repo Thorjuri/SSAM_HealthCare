@@ -11,8 +11,7 @@ class EvaluationsController {
         } = req.body;
         const data = await this.evaluationsService.createExer(
             nickname, disease, activity, height, 
-            weight, waist, hip, glucose, SBP, DBP
-            );
+            weight, waist, hip, glucose, SBP, DBP);
         return res.status(201).send(data);
     };
 

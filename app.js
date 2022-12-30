@@ -28,9 +28,16 @@ app.options("*", cors());
 app.use('/api', Router);
 app.use(errorHandlerMiddleware);
 
-app.get('/', (req, res)=>{
-    res.send("SSAM 서버 정상 작동 중😏😏😏😏😏");
-});
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.get("/", (req, res) => {
+    res.render("login");
+}); 
+
+app.get("/signup", (req, res) => {
+    res.render("signup");
+}); 
 
 //app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

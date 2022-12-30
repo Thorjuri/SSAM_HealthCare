@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+        function login(){
+        var param = {};
+        param.loginId = $("#userid").val();
+        param.password = $("#password").val();
+        var ajax = $.ajax({
+                    url: "/api/users/login",
+                    data: param,
+                    type: 'POST',
+                    dataType: "JSON",
+                    success: function(result){
+                        console.log(result);
+                        window.localStorage.setItem("loginId", result.loginId);
+                        window.localStorage.setItem("accessToken", result.accessToken);
+                        window.localStorage.setItem("user", result);
+                        // location.href = "/main";
+                    },
+                    error: function(result){
+                    console.log(result);
+                    alert(result.responseJSON.error);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div style="width:420px; margin:100px auto;">
+        <h1>Login</h1>
+        <div style="text-align:right;">
+            <span><a href="signup">회원가입</a></span>
+        </div>
+        <hr>
+        <div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+                </div>
+                <input type="text"  id="userid" name="userid" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">PW</span>
+                </div>
+                <input type="password"  id="password"  name="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <button type="button" value="Login" onclick="login()"  class="btn btn-outline-secondary">로그인</button>               
+        </div>
+    </div>
+</body>
+</html>

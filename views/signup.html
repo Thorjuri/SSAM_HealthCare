@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function signup(){
+            var param = {};
+            param.loginId = $("#userid").val();
+            param.password = $("#password").val();
+            param.confirmPass = $("#confirmPass").val();
+            param.nickname = $("#nickname").val();
+            param.email = $("#email").val(); 
+            param.phone = $("#phone").val();
+            param.gender = $("#gender").val();
+            param.age = $("#age").val();
+            var ajax = $.ajax({
+                url: "/api/users/signup",
+                data: param,
+                type: 'POST',
+                dataType: "JSON",
+                success: function (result) {
+                    alert(result.message);
+                    location.href = "/";
+                },
+                error: function(result){
+                    if(result.responseJSON.errorMessage === "Validation error"){
+                            alert("아이디 중복확인을 해주세요.")
+                    }else{
+                            alert(result.responseJSON.error)
+                    };
+                }
+            });
+        };
+
+        function checkDup(){
+            var param = {};
+            param.loginId = $("#userid").val();
+            var ajax = $.ajax({
+                url: "/api/users/checkDup",
+                data: param,
+                type: 'POST',
+                dataType: "JSON",
+                success: function (result) {
+                        alert(result.message);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div style="width:420px; margin:100px auto;">
+        <div id="login" style="text-align:right;"><a href="/">로그인</div>
+            <hr>
+            <div  id="loginout" style="display:none;">  
+                <span id="loginid"></span> <a href="/logout">로그아웃</a>
+        </div>
+        <div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+                    </div>
+                    <input type="text"  id="userid" name="userid" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <button type="button" value="중복확인" onclick="checkDup()" class="btn btn-outline-secondary">중복확인</button>               
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">PW</span>
+                    </div>
+                    <input type="password"  id="password"  name="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <button type="button" value="회원가입" onclick="signup();" class="btn btn-outline-secondary">회원가입</button>               
+                </div>
+        </div>
+    </div>
+</body>
+</html>

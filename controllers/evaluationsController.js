@@ -11,27 +11,21 @@ class EvaluationsController {
         } = req.body;
         const data = await this.evaluationsService.createExer(
             nickname, disease, activity, height, 
-            weight, waist, hip, glucose, SBP, DBP
-            );
-        return res.status(201).send(data);
+            weight, waist, hip, glucose, SBP, DBP);
+        res.status(201).send(data);
     };
 
     getExerResult = async(req, res)=> {
         const nickname = res.locals.user;
         const data = await this.evaluationsService.getExerResult(nickname);
-        return res.status(201).send(data);
+        res.status(200).send(data);
     };
 
-    createDiet = async(req, res)=> {
+    dietEvaluations = async(req, res)=> {
         const nickname = res.locals.user;
         const { intake } = req.body;
-        const data = await this.evaluationsService.createDiet(nickname, intake);
-        return res.status(201).send(data);
-    };
-
-    getDietResult = async(req, res)=> {
-        const nickname = res.locals.user;
-        const data = await this.evaluationsService.getDietResult(nickname);
+        const data = await this.evaluationsService.dietEvaluations(nickname, intake);
+        res.status(201).send(data);
     };
 };
 

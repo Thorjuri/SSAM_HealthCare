@@ -8,7 +8,5 @@ const wrapAsyncController = require('../middlewares/wrapAsyncController');
 router.post('/exercise', auth_middleware, wrapAsyncController(evaluationsController.createExer));
 router.get('/exercise', auth_middleware, wrapAsyncController(evaluationsController.getExerResult));
 router.post('/diet', auth_middleware, wrapAsyncController(evaluationsController.createDiet));
-router.get('/diet', auth_middleware, wrapAsyncController(evaluationsController.getDietResult))
-
 
 module.exports = router;

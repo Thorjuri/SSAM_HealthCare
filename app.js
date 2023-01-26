@@ -5,8 +5,8 @@ const Router = require('./routes');
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const errorHandlerMiddleware = require("./middlewares/error_handler_middleware");
-//const swaggerUi = require("swagger-ui-express");
-//const swaggerFile = require("./swagger_output.json");
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger_output.json");
 require("./models");
 
 
@@ -39,7 +39,7 @@ app.get("/signup", (req, res) => {
     res.render("signup");
 }); 
 
-//app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 if(process.env.NODE_ENV !== 'test'){
     app.listen(Port, () => {

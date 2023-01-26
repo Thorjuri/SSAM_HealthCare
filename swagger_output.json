@@ -1,0 +1,299 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SSAM",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "회원관리"
+    },
+    {
+      "name": "Evaluations",
+      "description": "운동/식이 평가"
+    },
+    {
+      "name": "Contents",
+      "description": "콘텐츠"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "any description..."
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "서버 통신 확인",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/users/signup": {
+      "post": {
+        "description": "회원가입",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "loginId": {
+                  "example": "아이디"
+                },
+                "password": {
+                  "example": "비밀번호"
+                },
+                "nickname": {
+                  "example": "닉네임"
+                },
+                "email": {
+                  "example": "example@host.com"
+                },
+                "phone": {
+                  "example": "010-1234-5678"
+                },
+                "gender": {
+                  "example": "F/M"
+                },
+                "age": {
+                  "example": 32
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/users/checkDup": {
+      "post": {
+        "description": "아이디/닉네임 중복확인",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "checkThing": {
+                  "example": "아이디 또는 닉네임"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "description": "로그인",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "loginId": {
+                  "example": "아이디"
+                },
+                "password": {
+                  "example": "비밀번호"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/evaluations/exercise": {
+      "post": {
+        "description": "운동 평가",
+        "tags": ["Evaluations"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disease": {
+                  "example": "질환(당뇨병, 고혈압, 골다공증, 관절염)"
+                },
+                "activity": {
+                  "example": "활동량(상, 중, 하)"
+                },
+                "height": {
+                  "example": "키(166)"
+                },
+                "weight": {
+                  "example": "몸무게(56)"
+                },
+                "waist": {
+                  "example": "허리둘레(70)"
+                },
+                "hip": {
+                  "example": "엉덩이둘레(95)"
+                },
+                "glucose": {
+                  "example": "공복혈당(89)"
+                },
+                "SBP": {
+                  "example": "수축기혈압(115)"
+                },
+                "DBP": {
+                  "example": "이완기혈압(78)"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "description": "운동평가 결과 조회",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/evaluations/diet": {
+      "post": {
+        "description": "식이평가",
+        "tags": ["Evaluations"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "intake": {
+                  "example": "일일 섭취 칼로리(1500)"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "signup": {
+      "type": "object",
+      "properties": {
+        "father": {
+          "type": "string",
+          "example": "Simon Doe"
+        },
+        "mother": {
+          "type": "string",
+          "example": "Marie Doe"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number",
+          "example": 1
+        },
+        "nickname": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "password": {
+          "type": "string",
+          "example": "1111"
+        }
+      },
+      "required": [
+        "nickname",
+        "password"
+      ]
+    },
+    "AddUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "about": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "name",
+        "age"
+      ]
+    }
+  }
+}
